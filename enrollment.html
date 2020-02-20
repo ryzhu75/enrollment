@@ -368,6 +368,39 @@ summary {
 </div>
 
 
+<pre class="r"><code>x_2020 &lt;- read_excel(&quot;class_enrollment_summary_by_term2.18.20.xlsx&quot;, skip = 3) %&gt;%
+ clean_names() %&gt;%
+  filter(!is.na(course_name))
+  
+  #group_by(course_department) %&gt;% 
+  #summarize(total = sum(total)) %&gt;%
+  #arrange(desc(total)) %&gt;% 
+  #slice(1:5) 
+  
+
+x_2019 &lt;- read_excel(&quot;class_enrollment_summary_by_term_3.22.19_0.xlsx&quot;, skip = 3)%&gt;%
+  clean_names() %&gt;%
+  filter(!is.na(course_name))
+
+x_2020 %&gt;% 
+  anti_join(x_2019, by = &quot;course_name&quot;) %&gt;% 
+  arrange(desc(total))</code></pre>
+<pre><code>## # A tibble: 824 x 14
+##    course_id course_title course_name course_section_… course_departme…
+##    &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;           
+##  1 212858    GENED 1102   Making Chn… 001              General Educati…
+##  2 204966    GENED 1023   Ignorance,… 001              General Educati…
+##  3 120880    GENED 1149   One Book, … 001              General Educati…
+##  4 117137    GENED 1152   The Incas   001              General Educati…
+##  5 212850    GENED 1066   Rationality 001              General Educati…
+##  6 114178    PSY 15       Social Psy… 001              Psychology      
+##  7 214486    GENED 1115   Human Traf… 001              General Educati…
+##  8 125228    GOV 1359     The Road t… 001              Government      
+##  9 143432    APMTH 105    Ordinary &amp;… 001              Applied Mathema…
+## 10 123941    PSY 1        Intro. to … 001              Psychology      
+## # … with 814 more rows, and 9 more variables: instructor_full_name &lt;chr&gt;,
+## #   u_grad &lt;dbl&gt;, grad &lt;dbl&gt;, non_degree &lt;dbl&gt;, x_reg &lt;dbl&gt;, vus &lt;dbl&gt;,
+## #   employee &lt;dbl&gt;, withdraw &lt;dbl&gt;, total &lt;dbl&gt;</code></pre>
 <div id="r-markdown" class="section level2">
 <h2>R Markdown</h2>
 </div>
